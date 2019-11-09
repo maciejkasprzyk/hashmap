@@ -145,7 +145,7 @@ dmypy.json
 [Bb]in
 [Ii]nclude
 [Ll]ib
-[Ll]ib64
+[Ll]ib64cd ..
 [Ll]ocal
 [Ss]cripts
 pyvenv.cfg
@@ -159,3 +159,6 @@ venv.bak/
 pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/c++,venv,python
+
+data/*
+!data/words_backup.txt
