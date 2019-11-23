@@ -2,36 +2,79 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
-
+#include <chrono>
 #include "HashMap.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int main() {
+// arg 1 -> path to txt file containing list of words
+// arg 2 -> n
+// arg 3 -> k
+// arg 4 -> random index to remove
+int main(int argc, char *argv[]) {
 
-   HashMap <int> map(1000);
-
-   ifstream file("ext.txt");
-   if (!file)
-   {
-        cout<<"Couldnt open file."<<endl;
+    if (argc != 5) {
+        cerr << "Usage:\n./main path n k\n";
         return -1;
-   }
-   string s;
-   while(file>>s){
-      cout<<s<<endl;
-   }
-//
-//   for (int i = 0 ; i < s.size() ; i ++){
-//      cout<<s[i]<<":"<<(int)(unsigned char)(s[i])<<" ";
-//   } cout<<endl;
-//
-//
-//
-//	for (int i = 0; i < 1000; i++) {
-//         map[s] = i;
-//   }
+    }
 
-   return 0;
+    ifstream file(argv[1]);
+    if (!file) {
+        cerr << "Couldn't open file." << endl;
+        return -1;
+    }
+
+    vector <string> words;
+    string s;
+    while (file >> s) {
+        words.push_back(s);
+    }
+
+    int n; // how many elements
+    int k; // size of array
+    int random;
+    try {
+        n = atoi(argv[2]);
+        k = atoi(argv[3]);
+        random = atoi(argv[4]);
+    } catch (...) {
+        cerr << "Usage:\n./main path n k\n";
+        return -1;
+    }
+    if (n > words.size()) {
+        cerr << "To many elements, maximum is " << words.size() << ".\n";
+        return -1;
+    }
+
+    HashMap<int> map(k);
+
+    for (int i = 0; i < n; i++) {
+        map[words[i]] = i;
+    }
+
+
+
+    auto start = std::chrono::system_clock::now();
+    map.remove(words[random]);
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    cout << elapsed_seconds.count() * 1000 << "\n"; // time in ms
+
+    start = std::chrono::system_clock::now();
+    map["on"] = 123;
+    end = std::chrono::system_clock::now();
+    elapsed_seconds = end - start;
+    cout << elapsed_seconds.count() * 1000 << "\n"; // time in ms
+
+    start = std::chrono::system_clock::now();
+    for (auto it = map.begin(); it != map.end(); it++) {
+        it->second += 1;
+    }
+    end = std::chrono::system_clock::now();
+    elapsed_seconds = end - start;
+    cout << elapsed_seconds.count() * 1000 << "\n"; // time in ms
+
+    return 0;
 }

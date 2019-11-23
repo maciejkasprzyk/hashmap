@@ -3,7 +3,7 @@ import requests
 import os
 import pathlib
 
-
+# directory of where script is located
 python_path = os.path.dirname(os.path.abspath(__file__))
 data_path = pathlib.Path(python_path).parent / 'data'
 

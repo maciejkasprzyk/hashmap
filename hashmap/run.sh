@@ -1,4 +1,3 @@
 #!/bin/bash
-echo $0
 DIR=$(dirname "$0")
-make -C "$DIR" && "$DIR"/bin/main
+make -C "$DIR" && "$DIR"/bin/main "$DIR"/../data/words.txt 1000 100
