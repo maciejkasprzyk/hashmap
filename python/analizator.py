@@ -22,9 +22,13 @@ if __name__ == '__main__':
 
         # directory of where script is located
         python_path = os.path.dirname(os.path.abspath(__file__))
-        main_path = pathlib.Path(python_path).parent / 'hashmap' / 'bin' / 'main'
+        main_path = pathlib.Path(python_path).parent / 'hashmap' / 'bin' / 'hashmap.exe'
+        print(main_path)
     except:
         print('Usage: analizator.py words.txt results_directory size_of_array max_size')
+        exit(-1)
+    if n <= 100:
+        print('Size of array must be bigger than 100.')
         exit(-1)
 
     results = []
@@ -32,8 +36,9 @@ if __name__ == '__main__':
     for n in np.arange(n // 100, n + 1, n // 100):
         avg = [0, 0, 0]
         for _ in range(5):
-            child = subprocess.run([main_path, words_file, str(n), k, str(randrange(n-1))], stdout=subprocess.PIPE,
+            child = subprocess.run([str(main_path), words_file, str(n), k, str(randrange(n-1))], stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE)
+            print(n)
             if child.returncode != 0:
                 print(child.stderr)
                 exit(-1)

@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
         k = atoi(argv[3]);
         random = atoi(argv[4]);
     } catch (...) {
-        cerr << "Usage:\n./main path n k\n";
+        cerr << "Usage:\n./main path n k random\n";
         return -1;
     }
     if (n > words.size()) {

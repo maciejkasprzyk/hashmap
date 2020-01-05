@@ -162,3 +162,6 @@ pip-selfcheck.json
 
 data/*
 !data/words_backup.txt
+
+.idea
+.vs
