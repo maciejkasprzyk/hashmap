@@ -10,13 +10,13 @@
 using namespace std;
 
 // arg 1 -> path to txt file containing list of words
-// arg 2 -> n
-// arg 3 -> k
+// arg 2 -> k size of array
+// arg 3 -> n how many elements
 // arg 4 -> random index to remove
 int main(int argc, char *argv[]) {
 
     if (argc != 5) {
-        cerr << "Usage:\n./main path n k\n";
+        cerr << "Usage:\n./main path n k random\n";
         return -1;
     }
 
@@ -32,12 +32,12 @@ int main(int argc, char *argv[]) {
         words.push_back(s);
     }
 
-    int n; // how many elements
-    int k; // size of array
+    int n;
+    int k;
     int random;
     try {
-        n = atoi(argv[2]);
-        k = atoi(argv[3]);
+        k = atoi(argv[2]);
+        n = atoi(argv[3]);
         random = atoi(argv[4]);
     } catch (...) {
         cerr << "Usage:\n./main path n k random\n";

@@ -94,6 +94,10 @@ public:
     void remove(const key_type &key) {
         size_type index = getHash(key);
         auto &searchedList = table[index];
+
+        if(searchedList.empty()) {
+            throw std::out_of_range("Removing missing element.");
+        }
         if (searchedList.begin()->first == key) {
             searchedList.pop_front();
             itemsInsertedCount--;
