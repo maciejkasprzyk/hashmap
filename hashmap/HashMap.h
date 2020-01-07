@@ -51,7 +51,9 @@ public:
         auto found = find(key);
         if (found != end()) {
             return found->second;
-        } else {
+        }
+        // jezeli brak elementu to jest tworzony
+        else {
             itemsInsertedCount++;
             size_type index = getHash(key);
             table[index].push_front({key, mapped_type{}});
@@ -94,8 +96,7 @@ public:
     void remove(const key_type &key) {
         size_type index = getHash(key);
         auto &searchedList = table[index];
-
-        if(searchedList.empty()) {
+        if(searchedList.empty()){
             throw std::out_of_range("Removing missing element.");
         }
         if (searchedList.begin()->first == key) {
