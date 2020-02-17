@@ -1,3 +1,6 @@
+## Projekt na przedmiot AAL
+Treść zadania w pliku pdf: TIN dokumentacja koncowa
+
 ## Hashmapa - W12W2131
 Maciej Kasprzyk
 
